@@ -1,19 +1,15 @@
 import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native';
-import { RootStackParamList } from '../../../types/navigation';
+import { RootStackParamList } from '../../../navigation/navigation';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { getUrlImage } from '../../../services/api';
 import TextView from '../../../components/TextView';
 import { EnumTypeText } from '../../../types/textEnums';
+import { TypeArtworks } from '../../../types/types';
 
 interface iItemList {
-    item: {
-        title: string;
-        artist_title: string;
-        image_id: string;
-        id: number;
-    }
+    item: TypeArtworks;
 }
 
 const ItemList = ({ item }: iItemList) => {

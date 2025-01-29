@@ -7,7 +7,7 @@ import { TypeDataArtworks, TypeResponseArtworks } from '../../types/types';
 import { inDetailsArtworks } from '../../reducer/reducer';
 import ButtomFav from '../../components/ButtomFav';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../types/navigation';
+import { RootStackParamList } from '../../navigation/navigation';
 import ErrorMsg from '../../components/ErrorMsg';
 import { useAppDispatch } from '../../store/store';
 
@@ -93,7 +93,8 @@ const DetailScreen = ({ route, navigation }: iDetailScreen) => {
                                 </View>
                                 <ButtomFav id={data.id} />
                             </View>
-                            <TextView text={data.artist_display} typeText={EnumTypeText.DESCRIPTION} color='#656565' />
+                            {data.date_display === 'Date unknown' ? null : <TextView text={data.date_display} typeText={EnumTypeText.MIN} color='#666' />}     
+                            <TextView text={data.artist_display} typeText={EnumTypeText.DESCRIPTION} color='#555' />
                             <TextView text={descriptionText(data)} typeText={EnumTypeText.DESCRIPTION} />
                             {data.exhibition_history &&
                                 <TextView text={data.exhibition_history.replace(/<\/?[^>]+(>|$)/g, "")} />

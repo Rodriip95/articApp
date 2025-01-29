@@ -26,6 +26,12 @@
     },
     "plugins": [
       "expo-font"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "bab9bd3b-d390-42f2-9712-e876d2874c20"
+      }
+    },
+    "owner": "rodripenela"
   }
 }

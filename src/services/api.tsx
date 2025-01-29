@@ -2,13 +2,13 @@ import axios from "axios"
 
 const apiUrl = "https://api.artic.edu/api/v1/artworks"
 
-export const getArtworks = async() => {
-    const response = await axios.get(apiUrl)
+export const getArtworks = async(page?:number) => {
+    const response = await axios.get(page ? `${apiUrl}?page=${page}` : apiUrl)
     return response.data
 }
 
-export const getArtworksForFields = async(id:number) => {
-    const response = await axios.get(`${apiUrl}?ids=${id}&fields=id,title,image_id,short_description,artist_display,description,exhibition_history`)
+export const getArtworksForFields = async(id:string | number) => {
+    const response = await axios.get(`${apiUrl}?ids=${id}&fields=id,title,image_id,short_description,artist_display,artist_title,description,exhibition_history,date_display,date_start`)
     return response.data
 }
 
