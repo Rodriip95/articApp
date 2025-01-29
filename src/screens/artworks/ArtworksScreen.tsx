@@ -9,6 +9,9 @@ import ToastBackHandler from "../../components/ToastBackHandler";
 import { getArtworks } from "../../services/api";
 import ItemList from "./components/ItemList";
 import ErrorMsg from "../../components/ErrorMsg";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useAppDispatch } from "../../store/store";
+import { addFavsStorage } from "../../reducer/reducer";
 
 const ArtworksScreen = () => {
   const [loading, setLoading] = useState(false);
@@ -17,9 +20,23 @@ const ArtworksScreen = () => {
   const [error, setError] = useState(false);
   const [page, setPage] = useState(2);
 
+  const dispatch = useAppDispatch()
+
   useEffect(() => {
     init();
+    getFavs();
   }, []);
+
+  const getFavs = async () => {
+    try {
+      const jsonFavs = await AsyncStorage.getItem('favs');
+      if(jsonFavs){
+        dispatch(addFavsStorage(JSON.parse(jsonFavs)))
+      }
+    } catch (e) {
+      // error reading value
+    }
+  };
 
   const init = async () => {
     setLoading(true);
@@ -50,7 +67,7 @@ const ArtworksScreen = () => {
 
   return (
     <View style={styles.container}>
-      {!error ? (
+      {error ? (
         <ErrorMsg onPress={init} />
       ) : (
         <>

@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createSlice } from "@reduxjs/toolkit";
 
 export const artworksSlice = createSlice({
@@ -21,9 +22,12 @@ export const artworksSlice = createSlice({
         id: action.payload,
       };
     },
+    addFavsStorage: (state, action) => {
+      state.favs= action.payload
+    }
   },
 });
 
-export const { addFavsForDetails, inDetailsArtworks } = artworksSlice.actions;
+export const { addFavsForDetails, inDetailsArtworks, addFavsStorage } = artworksSlice.actions;
 
 export default artworksSlice.reducer;
