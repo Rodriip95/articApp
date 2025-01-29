@@ -24,12 +24,14 @@ const ToastBackHandler = () => {
                 return true;
             }
         };
+        
         const backHandlerListener = BackHandler.addEventListener('hardwareBackPress', backAction);
 
         return () => {
             backHandlerListener.remove();
         };
     }, [exitApp]);
+
     return (
         <Toast />
     )

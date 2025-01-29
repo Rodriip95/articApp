@@ -1,10 +1,10 @@
 import { ActivityIndicator, BackHandler, Dimensions, FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import Toast from 'react-native-toast-message';
 import ToastBackHandler from '../../components/ToastBackHandler';
 import { getArtworks } from '../../services/api';
 import ItemList from './components/ItemList';
 import ErrorMsg from '../../components/ErrorMsg';
+import { useSelector } from 'react-redux';
 
 const ArtworksScreen = () => {
   const [loading, setLoading] = useState(false)

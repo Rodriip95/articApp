@@ -1,5 +1,7 @@
 import { Animated, Dimensions, Easing, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import React, { useEffect, useRef } from 'react'
+import TextView from './TextView'
+import { EnumTypeText } from '../types/textEnums'
 
 interface iButtomAnimated {
     handlerNavigate: ()=> void
@@ -42,7 +44,7 @@ const ButtomAnimated = ({ handlerNavigate }: iButtomAnimated) => {
         }
         >
             <TouchableOpacity onPress={handlerNavigate} style={styles.button}>
-                <Text style={{ color: '#fff' }}>INGRESAR</Text>
+                <TextView text='INGRESAR' color='#fff' typeText={EnumTypeText.DESCRIPTION} styles={styles.pHorizontal} />
             </TouchableOpacity>
         </Animated.View>
     )
@@ -64,5 +66,7 @@ const styles = StyleSheet.create({
         height: 50,
         alignItems: 'center',
         justifyContent: 'center',
-    }
+        paddingTop: 5
+    },
+    pHorizontal: {paddingHorizontal: 20}
 })

@@ -1,27 +1,42 @@
-import { Dimensions, Image, StyleSheet, Text, View } from 'react-native'
+import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
+import { useNavigation } from '@react-navigation/native';
+import { RootStackParamList } from '../../../types/navigation';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { getUrlImage } from '../../../services/api';
+import TextView from '../../../components/TextView';
+import { EnumTypeText } from '../../../types/textEnums';
 
 interface iItemList {
     item: {
         title: string;
-        artist_display: string;
+        artist_title: string;
         image_id: string;
+        id: number;
     }
 }
 
 const ItemList = ({ item }: iItemList) => {
+
+    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+    const navigateDetails = (id:number) => {
+        navigation.navigate('DetailScreen' , {
+            id
+        })
+    }
+
     return (
-        <View style={styles.container}>
+        <TouchableOpacity onPress={()=>navigateDetails(item.id)} style={styles.container}>
             <Image 
                 style={styles.imageColor} 
-                source={{ uri: `https://www.artic.edu/iiif/2/${item.image_id}/full/843,/0/default.jpg` }} 
+                source={{ uri: getUrlImage(item.image_id) }} 
                 resizeMode={'cover'} 
                 height={Dimensions.get('screen').width / 2 - 40} 
                 width={Dimensions.get('screen').width / 2 - 40} 
                 />
-            <Text>{item.title}</Text>
-            <Text>{item.artist_display}</Text>
-        </View>
+            <TextView text={item.title} typeText={EnumTypeText.DESCRIPTION}/>
+            <TextView text={item.artist_title} typeText={EnumTypeText.MIN} color='#999'/>
+        </TouchableOpacity>
     )
 }
 

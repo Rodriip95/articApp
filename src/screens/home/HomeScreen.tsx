@@ -3,6 +3,9 @@ import { StatusBar } from 'expo-status-bar';
 import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import { RootStackParamList } from '../../types/navigation';
 import ButtomAnimated from '../../components/ButtomAnimated';
+import TextView from '../../components/TextView';
+import { EnumTypeText } from '../../types/textEnums';
+import { useFonts } from 'expo-font';
 
 interface iHomeScreen {
   navigation: NativeStackNavigationProp<RootStackParamList, 'HomeScreen'>;
@@ -18,10 +21,12 @@ const HomeScreen = ({navigation}:iHomeScreen) => {
     <View style={styles.container}>
       <View style={styles.containerCenter}>
         <View style={styles.logo}>
-          <Text>ARTIC</Text>
-          <Text>APP</Text>
+          <TextView text='Art' semibold typeText={EnumTypeText.TITLE}/>
+          <TextView text='Institute' semibold typeText={EnumTypeText.TITLE}/>
+          <TextView text='Chicago' semibold typeText={EnumTypeText.TITLE}/>
+          <TextView text='App' semibold typeText={EnumTypeText.TITLE}/>
         </View>
-        <ButtomAnimated handlerNavigate={handlerNavigate}/>
+          <ButtomAnimated handlerNavigate={handlerNavigate}/>
         </View>
       <StatusBar style="auto"/>
     </View>
