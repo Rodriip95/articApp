@@ -2,6 +2,10 @@
 
 La App se baso en el consumo de la Api [Artic](https://api.artic.edu/docs/) del instituto de Arte de Chicago.
 
+## Instalacion y uso
+
+Se puede clonar el repositorio, instalar las dependencias y con "npm start" el proyecto ya estaria corriendo.
+
 ## Librerias
 
 Se utilizaron las siguentes librerias:
